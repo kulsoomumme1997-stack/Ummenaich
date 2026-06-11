@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Umme Kulsoom Naich — Product Lead & Venture Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0d;
+    --paper: #f5f3ef;
+    --warm: #e8e4dc;
+    --accent: #c8502a;
+    --accent-soft: #f0e8e3;
+    --muted: #7a7570;
+    --line: #ddd9d3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+    cursor: default;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(245,243,239,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-logo {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.01em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  #home {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 3rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 0.3rem 0.8rem;
+    border-radius: 2px;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.2s forwards;
+  }
+
+  .hero-headline {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    max-width: 820px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.4s forwards;
+  }
+  .hero-headline em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    margin-top: 1.8rem;
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 560px;
+    font-weight: 300;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.6s forwards;
+  }
+
+  .hero-metrics {
+    display: flex; flex-wrap: wrap; gap: 1rem;
+    margin-top: 3.5rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.8s forwards;
+  }
+  .metric-pill {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0.6rem 1.2rem;
+    border-radius: 100px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .metric-pill span {
+    color: #f0a882;
+    font-weight: 500;
+  }
+
+  .hero-cta {
+    margin-top: 3rem;
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.7s 1s forwards;
+  }
+  .btn {
+    display: inline-block;
+    padding: 0.85rem 1.8rem;
+    border-radius: 4px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+  }
+  .btn-primary:hover { background: #b04422; transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+  }
+  .btn-outline:hover { background: var(--ink); color: var(--paper); }
+
+  .hero-scroll {
+    position: absolute; bottom: 3rem; left: 3rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: flex; align-items: center; gap: 0.6rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 1.3s forwards;
+  }
+  .hero-scroll::before {
+    content: '';
+    display: block;
+    width: 40px; height: 1px;
+    background: var(--muted);
+  }
+
+  /* HERO TWO-COL */
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 4rem;
+    align-items: center;
+    min-height: 100vh;
+    padding: 8rem 3rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .hero-photo-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.3s forwards;
+  }
+  .hero-photo {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    border: 3px solid var(--line);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+  }
+  .testimonial-card {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 10px;
+    padding: 1.5rem 1.5rem 1.5rem 1.8rem;
+    width: 100%;
+    position: relative;
+  }
+  .testimonial-card::before {
+    content: '"';
+    font-family: 'Instrument Serif', serif;
+    font-size: 3.5rem;
+    color: var(--accent);
+    line-height: 1;
+    position: absolute;
+    top: 0.4rem;
+    left: 1.1rem;
+    opacity: 0.5;
+  }
+  .testimonial-text {
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: rgba(245,243,239,0.8);
+    padding-top: 1.4rem;
+    font-style: italic;
+  }
+  .testimonial-source {
+    margin-top: 1rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .testimonial-name {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--paper);
+  }
+  .testimonial-role {
+    font-size: 0.72rem;
+    color: rgba(245,243,239,0.45);
+    letter-spacing: 0.03em;
+    margin-top: 0.1rem;
+  }
+
+  /* PHILOSOPHY + CAREER ARC */
+  .hero-philosophy {
+    border-left: 2px solid var(--accent);
+    padding-left: 1.2rem;
+    margin-bottom: 0;
+  }
+  .philosophy-text {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.65;
+    margin-bottom: 1.2rem;
+  }
+  .career-arc {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+  .arc-step {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+  .arc-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--muted);
+  }
+  .arc-step.active .arc-label {
+    color: var(--accent);
+  }
+  .arc-sub {
+    font-size: 0.7rem;
+    color: var(--line);
+    letter-spacing: 0.04em;
+  }
+  .arc-step.active .arc-sub {
+    color: var(--accent);
+    opacity: 0.6;
+  }
+  .arc-divider {
+    color: var(--line);
+    font-size: 0.9rem;
+    padding-bottom: 0.8rem;
+  }
+
+  /* TRAIT CHIPS */
+  .trait-chip {
+    background: var(--warm);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+
+  /* SCOPE STRIP */
+  .scope-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .scope-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.3rem;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .scope-label {
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .scope-divider {
+    color: var(--line);
+    font-size: 1.2rem;
+    padding-top: 0.3rem;
+  }
+
+  /* JOURNEY ROW */
+  .journey-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .journey-step {
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+    text-align: center;
+  }
+  .journey-icon {
+    font-size: 1.2rem;
+    color: var(--line);
+  }
+  .journey-step.active .journey-icon { color: var(--accent); }
+  .journey-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    max-width: 100px;
+    line-height: 1.3;
+  }
+  .journey-step.active .journey-label { color: var(--accent); }
+  .journey-arrow {
+    color: var(--line);
+    font-size: 1.1rem;
+    padding-bottom: 1.4rem;
+  }
+
+  /* SECTION SHARED */
+  section {
+    padding: 7rem 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 1rem;
+  }
+  .section-intro {
+    color: var(--muted);
+    font-size: 1rem;
+    max-width: 560px;
+    font-weight: 300;
+    margin-bottom: 4rem;
+  }
+  hr.divider {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 0 3rem;
+  }
+
+  /* WORK CARDS */
+  .work-grid { display: flex; flex-direction: column; gap: 1.5px; }
+
+  .work-card {
+    background: var(--warm);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 2.5rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: start;
+    transition: all 0.25s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+  }
+  .work-card::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    transform: scaleY(0);
+    transition: transform 0.25s;
+    transform-origin: bottom;
+  }
+  .work-card:hover { background: white; box-shadow: 0 4px 24px rgba(0,0,0,0.08); transform: translateY(-2px); }
+  .work-card:hover::before { transform: scaleY(1); }
+
+  .card-tag {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  .card-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.25;
+  }
+  .card-desc {
+    color: var(--muted);
+    font-size: 0.92rem;
+    font-weight: 300;
+    max-width: 500px;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  .card-metrics {
+    display: flex; flex-wrap: wrap; gap: 0.6rem;
+  }
+  .tag {
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 0.25rem 0.7rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+  .card-arrow {
+    font-size: 1.5rem;
+    color: var(--muted);
+    transition: transform 0.2s, color 0.2s;
+    padding-top: 0.2rem;
+  }
+  .work-card:hover .card-arrow { transform: translate(3px, -3px); color: var(--accent); }
+
+  /* CASE STUDY PAGE */
+  .case-page {
+    display: none;
+    padding-top: 7rem;
+  }
+  .case-page.active { display: block; }
+
+  .case-hero {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 5rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .case-hero::after {
+    content: '';
+    position: absolute; right: -80px; top: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(200,80,42,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .case-back {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8rem;
+    color: rgba(245,243,239,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    margin-bottom: 2.5rem;
+    transition: color 0.2s;
+    background: none; border: none;
+  }
+  .case-back:hover { color: var(--paper); }
+
+  .case-type {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #f0a882;
+    margin-bottom: 1rem;
+  }
+  .case-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    max-width: 700px;
+    margin-bottom: 1.5rem;
+  }
+  .case-summary {
+    font-size: 1rem;
+    color: rgba(245,243,239,0.65);
+    max-width: 560px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .case-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin-top: 3rem;
+  }
+  .stat-item {
+    padding: 1.8rem 0;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    padding-right: 2rem;
+    padding-left: 0;
+  }
+  .stat-item:not(:first-child) { padding-left: 2rem; }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 2rem;
+    color: #f0a882;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: rgba(245,243,239,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .case-body {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 3rem;
+  }
+  .case-section { margin-bottom: 4rem; }
+  .case-section-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .case-section-label::after {
+    content: ''; flex: 1; height: 1px; background: var(--line);
+  }
+  .case-section h3 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  .case-section p {
+    color: var(--muted);
+    font-size: 0.97rem;
+    line-height: 1.8;
+    font-weight: 300;
+    max-width: 700px;
+    margin-bottom: 1rem;
+  }
+  .insight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .insight-card {
+    background: var(--warm);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 1.5rem;
+  }
+  .insight-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 2rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .insight-label {
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .process-steps {
+    display: flex; flex-direction: column; gap: 0;
+    margin-top: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .step {
+    display: grid; grid-template-columns: 48px 1fr;
+    gap: 1.5rem; align-items: start;
+    padding: 1.5rem 1.8rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.4rem;
+    color: var(--accent);
+    opacity: 0.4;
+    line-height: 1;
+    padding-top: 0.1rem;
+  }
+  .step-content h4 {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+  }
+  .step-content p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.6;
+    margin: 0;
+    max-width: none;
+  }
+
+  .outcome-row {
+    display: flex; align-items: start; gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .outcome-row:last-child { border-bottom: none; }
+  .outcome-dot {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 0.55rem;
+  }
+  .outcome-text {
+    font-size: 0.95rem;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+  .outcome-text strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* ABOUT / CONTACT */
+  #contact {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 6rem 3rem;
+    max-width: none;
+  }
+  .contact-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+  .contact-pitch {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    line-height: 1.35;
+    margin-bottom: 1.5rem;
+  }
+  .contact-pitch em { font-style: italic; color: #f0a882; }
+  .contact-body {
+    font-size: 0.97rem;
+    color: rgba(245,243,239,0.6);
+    font-weight: 300;
+    line-height: 1.75;
+    margin-bottom: 2rem;
+    max-width: 460px;
+  }
+  .contact-links {
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .contact-link {
+    display: flex; align-items: center; gap: 1rem;
+    text-decoration: none;
+    color: var(--paper);
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+  .contact-link:hover { color: #f0a882; }
+  .contact-link-icon {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+  .contact-right {
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 2.5rem;
+  }
+  .contact-right h3 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+  }
+  .availability {
+    display: flex; align-items: center; gap: 0.6rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.82rem;
+    color: rgba(245,243,239,0.5);
+  }
+  .avail-dot {
+    width: 8px; height: 8px;
+    background: #4ade80;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(74,222,128,0.2);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(74,222,128,0.2); }
+    50% { box-shadow: 0 0 0 6px rgba(74,222,128,0.1); }
+  }
+  .contact-info-row {
+    display: flex; flex-direction: column; gap: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
+  .info-item {
+    font-size: 0.85rem;
+    color: rgba(245,243,239,0.5);
+  }
+  .info-item strong { color: var(--paper); font-weight: 500; }
+
+  /* SCREENSHOT GALLERY */
+  .screenshot-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .screenshot-frame {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--warm);
+    aspect-ratio: 9/16;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .screenshot-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  @media (max-width: 768px) {
+    .screenshot-gallery { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero-grid { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; gap: 2.5rem; }
+    section { padding: 4rem 1.5rem 3rem; }
+    .work-card { grid-template-columns: 1fr; padding: 1.8rem; }
+    .case-hero { padding: 4rem 1.5rem 3rem; }
+    .case-body { padding: 3rem 1.5rem; }
+    .case-stats { grid-template-columns: 1fr 1fr; }
+    .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    hr.divider { margin: 0 1.5rem; }
+    /* Collapse all inline-styled grids to single column on mobile */
+    .case-body div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+    .case-body div[style*="border-right"] { border-right: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Umme Kulsoom Naich</div>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showHome()">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://linkedin.com/in/ummenaich" target="_blank">LinkedIn ↗</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════════════════════ HOME ═══════════════════════════════════════ -->
+<div id="main-home">
+
+  <div id="home" class="hero-grid">
+
+    <!-- LEFT: text -->
+    <div class="hero-left">
+      <div class="hero-tag" style="opacity:0; animation: fadeUp 0.6s 0.2s forwards;">Product Lead · Venture Builder · Munich</div>
+      <h1 class="hero-headline" style="margin-top:1.2rem;">
+        Corporate structure.<br><em>Startup speed.</em><br>Real products shipped.
+      </h1>
+      <p class="hero-sub">I turn ambiguous problems into shipped products — combining user insight, cross-functional alignment, and real constraints into products that launch, grow, and get funded. I work best where structure has to be created, not inherited. Two ventures built from zero, inside one of Europe's largest health and hygiene companies.</p>
+
+      <div style="margin-top:2rem; opacity:0; animation: fadeUp 0.7s 0.85s forwards;">
+        <div style="font-size:0.7rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:0.8rem;">What I bring</div>
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+          <span style="font-size:0.78rem; color:var(--muted); background:var(--warm); border:1px solid var(--line); padding:0.25rem 0.7rem; border-radius:3px;">Built from Scratch</span>
+          <span style="font-size:0.78rem; color:var(--muted); background:var(--warm); border:1px solid var(--line); padding:0.25rem 0.7rem; border-radius:3px;">Continuous Discovery & User Research</span>
+          <span style="font-size:0.78rem; color:var(--muted); background:var(--warm); border:1px solid var(--line); padding:0.25rem 0.7rem; border-radius:3px;">Growth & Retention Optimisation</span>
+          <span style="font-size:0.78rem; color:var(--muted); background:var(--warm); border:1px solid var(--line); padding:0.25rem 0.7rem; border-radius:3px;">Go-to-Market Strategy</span>
+          <span style="font-size:0.78rem; color:var(--muted); background:var(--warm); border:1px solid var(--line); padding:0.25rem 0.7rem; border-radius:3px;">Data & Analytics</span>
+          <span style="font-size:0.78rem; color:var(--muted); background:var(--warm); border:1px solid var(--line); padding:0.25rem 0.7rem; border-radius:3px;">Agile Delivery</span>
+          <span style="font-size:0.78rem; color:var(--muted); background:var(--warm); border:1px solid var(--line); padding:0.25rem 0.7rem; border-radius:3px;">Business Case & Venture Strategy</span>
+          <span style="font-size:0.78rem; color:var(--muted); background:var(--warm); border:1px solid var(--line); padding:0.25rem 0.7rem; border-radius:3px;">Cross-functional Leadership</span>
+          <span style="font-size:0.78rem; color:var(--muted); background:var(--warm); border:1px solid var(--line); padding:0.25rem 0.7rem; border-radius:3px;">AI-Native Workflows</span>
+        </div>
+      </div>
+
+      <div class="hero-scope" style="display:flex; flex-wrap:wrap; gap:1.5rem; margin-top:2rem; opacity:0; animation: fadeUp 0.7s 0.9s forwards;">
+        <div class="scope-item">
+          <div class="scope-num">8-person</div>
+          <div class="scope-label">Cross-functional team led</div>
+        </div>
+        <div class="scope-divider">·</div>
+        <div class="scope-item">
+          <div class="scope-num">€250K</div>
+          <div class="scope-label">Budget owned</div>
+        </div>
+        <div class="scope-divider">·</div>
+        <div class="scope-item">
+          <div class="scope-num">2 products</div>
+          <div class="scope-label">Built over 3 years</div>
+        </div>
+      </div>
+
+      <div class="hero-philosophy" style="margin-top:2rem; opacity:0; animation: fadeUp 0.7s 0.95s forwards;">
+        <div class="career-arc">
+          <div class="arc-step">
+            <div class="arc-label">Strategy consulting</div>
+            <div class="arc-sub">Intellia Advisors</div>
+          </div>
+          <div class="arc-divider">→</div>
+          <div class="arc-step">
+            <div class="arc-label">Venture builder</div>
+            <div class="arc-sub">Essity Ventures</div>
+          </div>
+          <div class="arc-divider">→</div>
+          <div class="arc-step active">
+            <div class="arc-label">What's next</div>
+            <div class="arc-sub">Your team</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:2rem; opacity:0; animation: fadeUp 0.7s 1.1s forwards;">
+        <a href="#work" class="btn btn-primary">See my work</a>
+        <a href="mailto:kulsoomumme1997@gmail.com" class="btn btn-outline">Get in touch</a>
+        <a href="https://drive.google.com/file/d/1i8dpsCTc8veFeMuC5zGM4JO8R8bOMnOR/view?usp=sharing" target="_blank" class="btn btn-outline">Download CV ↓</a>
+      </div>
+    </div>
+
+    <!-- RIGHT: photo + testimonial -->
+    <div class="hero-photo-col">
+      <img src="data:image/jpeg;base64,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" alt="Umme Kulsoom Naich" class="hero-photo" />
+      <div class="testimonial-card">
+        <p class="testimonial-text">She owned the full digital product journey: discovery, validation, product strategy, cross-functional coordination, regulatory &amp; legal requirements, and final launch — all within a very compressed timeline.</p>
+        <div class="testimonial-source">
+          <div class="testimonial-name">Kai Thornagel</div>
+          <div class="testimonial-role">Director Essity Ventures · Essity GmbH</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="section-label">Selected Work</div>
+    <h2 class="section-title reveal">Two ventures built.<br>One operational engine.<br>All from scratch.</h2>
+    <p class="section-intro reveal">Each case study shows how I think, not just what I delivered — the decisions made, the trade-offs navigated, and the outcomes achieved.</p>
+
+    <div class="work-grid">
+
+      <a class="work-card reveal" onclick="showCase('case1'); return false;" href="#">
+        <div>
+          <div class="card-tag">Digital Health · Built from Scratch · Full GTM Ownership</div>
+          <div class="card-title">Sammy — Digital Health Companion</div>
+          <p class="card-desc">Built and launched a digital health product entirely from scratch — strategy, product, go-to-market, and continuous iteration, all owned end-to-end. 2,000+ users in 6 months, 45% still active after four weeks, acquisition cost cut in half — inside a large corporate with full regulatory compliance.</p>
+          <div class="card-metrics">
+            <span class="tag">€250K Internal Funding Secured</span>
+            <span class="tag">2,000+ Users</span>
+            <span class="tag">45% Retention (1.8× industry benchmark)</span>
+            <span class="tag">50% Lower Acquisition Cost</span>
+            <span class="tag">Full GTM</span>
+          </div>
+        </div>
+        <div class="card-arrow">↗</div>
+      </a>
+
+      <a class="work-card reveal" onclick="showCase('case2'); return false;" href="#">
+        <div>
+          <div class="card-tag">Consumer Wellness · Teen Health · Built &amp; Launched</div>
+          <div class="card-title">Routeen — Gamified Wellness App for Teens</div>
+          <p class="card-desc">Co-built a gamified wellness app for teens — my first venture, owning research, website, prototyping, beta testing, ad strategy, and content end-to-end. 8,000+ users acquired; after multiple pivots, validated as the digital gateway bringing the next generation of customers into the ecosystem.</p>
+          <div class="card-metrics">
+            <span class="tag">8,000+ Users</span>
+            <span class="tag">2 in 3 Active Users in Rewards</span>
+            <span class="tag">18% Rewards Redeemed</span>
+            <span class="tag">14 Iterations in 6 Months</span>
+          </div>
+        </div>
+        <div class="card-arrow">↗</div>
+      </a>
+
+      <a class="work-card reveal" onclick="showCase('case3'); return false;" href="#">
+        <div>
+          <div class="card-tag">Venture Operations · Ecosystem · Comms</div>
+          <div class="card-title">Running the Visibility Engine of a Corporate Venture Unit</div>
+          <p class="card-desc">Built the visibility and credibility of an internal startup unit inside a 46,000-person global company — internally to secure funding and buy-in, externally to attract the right startups and partners. Owned internal communications, executive storytelling, an annual startup event, and a 300+ startup scouting pipeline.</p>
+          <div class="card-metrics">
+            <span class="tag">300+ Startups Scouted</span>
+            <span class="tag">2× Events Led</span>
+            <span class="tag">46K Reach</span>
+            <span class="tag">CRM Migrated In-House</span>
+          </div>
+        </div>
+        <div class="card-arrow">↗</div>
+      </a>
+
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- CONTACT -->
+  <div id="contact">
+    <div class="contact-inner">
+      <div>
+        <div class="section-label" style="color:#f0a882">Let's talk</div>
+        <p class="contact-pitch">The kind of builder who <em>owns the whole thing</em> — not just the roadmap.</p>
+        <p class="contact-body">I'm looking for a role where there's a real problem to solve, a product to build, and room to own the outcome — not just execute a brief. Ideally in a team that moves fast, values evidence over opinion, and isn't afraid of ambiguity. If that sounds like your environment, I'd love to talk.</p>
+        <div class="contact-links">
+          <a href="mailto:kulsoomumme1997@gmail.com" class="contact-link">
+            <div class="contact-link-icon">✉</div>
+            kulsoomumme1997@gmail.com
+          </a>
+          <a href="https://linkedin.com/in/ummenaich" target="_blank" class="contact-link">
+            <div class="contact-link-icon">in</div>
+            linkedin.com/in/ummenaich
+          </a>
+        </div>
+      </div>
+      <div class="contact-right">
+        <h3>Quick facts</h3>
+        <div class="availability">
+          <div class="avail-dot"></div>
+          Open to new opportunities
+        </div>
+        <div class="contact-info-row">
+          <div class="info-item"><strong>Location</strong> — Munich, Germany</div>
+          <div class="info-item"><strong>Work authorisation</strong> — EU (full right to work)</div>
+          <div class="info-item"><strong>Languages</strong> — English (fluent), German (actively progressing)</div>
+          <div class="info-item"><strong>Certifications</strong> — Certified Agile Coach</div>
+          <div class="info-item"><strong>Education</strong> — M.A. Entrepreneurship & Digital Transformation, Hochschule München</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main-home -->
+
+
+<!-- ═══════════════════════════ CASE STUDY 1 ═══════════════════════════ -->
+<div id="case1" class="case-page">
+
+  <div class="case-hero">
+    <div style="max-width:1100px; margin:0 auto;">
+      <button class="case-back" onclick="showHome()">← Back to work</button>
+      <div class="case-type">Case Study 01 · Digital Health · Built from Scratch</div>
+      <h1 class="case-title">Sammy — Digital Health Companion</h1>
+      <p class="case-summary">A regulated digital health product built from scratch inside a 46,000-person FMCG company — no playbook, no precedent, startup speed. From blank slate to funded, retained user base in the UK market.</p>
+      <div class="case-stats">
+        <div class="stat-item">
+          <div class="stat-num">€250K</div>
+          <div class="stat-label">Seed funding secured</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2,000+</div>
+          <div class="stat-label">Users in 6 months</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">45%</div>
+          <div class="stat-label">4-week retention</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">50%</div>
+          <div class="stat-label">CAC reduction</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">40→60%</div>
+          <div class="stat-label">Activation improvement</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-body">
+
+    <div class="case-section">
+      <div class="case-section-label">Context</div>
+      <h3>A gap in a €12B company's ecosystem</h3>
+      <p>Essity — the company behind TENA, Tork, and Tempo — had a physical product portfolio used by millions of people managing a persistent, stigmatised health condition — one most people dealt with in silence, without adequate support, and without anyone talking openly about it.</p>
+      <p>There was no digital layer. No way to break the taboo, grow market share, or build the recurring relationship that unlocks new revenue streams. The opportunity: build a digital health companion that could do all of it — deepen engagement with existing customers, bring new ones in, and give users something that actually helped.</p>
+      <p>The constraint: build it inside a regulated, 46,000-person FMCG company — navigating GDPR, medical device requirements, tight budgets, and compressed timelines — at startup speed, without a playbook, and without knowing yet which product or format would stick.</p>
+    </div>
+
+    <div class="case-section">
+      <div class="case-section-label">The product</div>
+      <h3>Built for the people most apps ignore</h3>
+
+      <!-- Product summary bar -->
+      <div style="background:var(--warm); border:1px solid var(--line); border-radius:8px; padding:1.2rem 1.6rem; margin-bottom:1.5rem;">
+        <div style="display:flex; flex-wrap:wrap; gap:1rem; justify-content:space-between;">
+          <span style="font-size:0.85rem; color:var(--ink);"><strong>Sammy</strong> — Regulated digital health companion (iOS & Android)</span>
+          <span style="font-size:0.85rem; color:var(--muted);">Built for 50+ users managing a stigmatised condition</span>
+          <span style="font-size:0.85rem; color:var(--muted);">Launched in the UK market · Clinically-backed methods</span>
+        </div>
+      </div>
+
+      <!-- Two challenge cards -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.5rem;">
+        <div style="background:var(--warm); border:1px solid var(--line); border-radius:8px; padding:1.4rem;">
+          <div style="font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin-bottom:0.8rem;">Product Challenge</div>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.5rem;">
+            <li style="font-size:0.85rem; color:var(--ink); padding-left:1rem; position:relative;"><span style="position:absolute; left:0; color:var(--accent);">·</span>50+ first-time app users</li>
+            <li style="font-size:0.85rem; color:var(--ink); padding-left:1rem; position:relative;"><span style="position:absolute; left:0; color:var(--accent);">·</span>Stigmatised condition — rarely spoken about</li>
+            <li style="font-size:0.85rem; color:var(--ink); padding-left:1rem; position:relative;"><span style="position:absolute; left:0; color:var(--accent);">·</span>Confidence over overwhelm — always</li>
+          </ul>
+        </div>
+        <div style="background:var(--warm); border:1px solid var(--line); border-radius:8px; padding:1.4rem;">
+          <div style="font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin-bottom:0.8rem;">GTM Challenge</div>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.5rem;">
+            <li style="font-size:0.85rem; color:var(--ink); padding-left:1rem; position:relative;"><span style="position:absolute; left:0; color:var(--accent);">·</span>Standard channels restricted for this condition</li>
+            <li style="font-size:0.85rem; color:var(--ink); padding-left:1rem; position:relative;"><span style="position:absolute; left:0; color:var(--accent);">·</span>No acquisition playbook existed</li>
+            <li style="font-size:0.85rem; color:var(--ink); padding-left:1rem; position:relative;"><span style="position:absolute; left:0; color:var(--accent);">·</span>Test → Kill → Scale — built from scratch</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Three shaped-by columns -->
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin-bottom:1.5rem;">
+        <div style="background:var(--warm); border:1px solid var(--line); border-radius:8px; padding:1.2rem;">
+          <div style="font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:0.7rem;">Ads</div>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.4rem;">
+            <li style="font-size:0.82rem; color:var(--ink);">Channels</li>
+            <li style="font-size:0.82rem; color:var(--ink);">Messaging</li>
+            <li style="font-size:0.82rem; color:var(--ink);">Visuals</li>
+            <li style="font-size:0.82rem; color:var(--muted); font-style:italic;">All tested from scratch</li>
+          </ul>
+        </div>
+        <div style="background:var(--warm); border:1px solid var(--line); border-radius:8px; padding:1.2rem;">
+          <div style="font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:0.7rem;">App</div>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.4rem;">
+            <li style="font-size:0.82rem; color:var(--ink);">Language</li>
+            <li style="font-size:0.82rem; color:var(--ink);">Onboarding flow</li>
+            <li style="font-size:0.82rem; color:var(--ink);">Visual hierarchy</li>
+            <li style="font-size:0.82rem; color:var(--ink);">Progress framing</li>
+          </ul>
+        </div>
+        <div style="background:var(--warm); border:1px solid var(--line); border-radius:8px; padding:1.2rem;">
+          <div style="font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:0.7rem;">Retention</div>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.4rem;">
+            <li style="font-size:0.82rem; color:var(--ink);">Habit loops for 50+</li>
+            <li style="font-size:0.82rem; color:var(--ink);">Confidence-first design</li>
+            <li style="font-size:0.82rem; color:var(--muted); font-style:italic;">Not assumed — tested</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Insight line -->
+      <div style="border-left:3px solid var(--accent); padding-left:1rem; font-size:0.88rem; color:var(--muted); font-style:italic;">
+        Every decision tested with real users from the target audience — not assumed.
+      </div>
+
+      <div class="screenshot-gallery" style="margin-top:1.5rem;">
+        <div class="screenshot-frame">
+          <img src="https://play-lh.googleusercontent.com/vd29-A5MxZ9kNQSDBjZEpnJgbrT7w2FuF-ftk1NONB9NfTm-UujfAEplIc0r7Jh4Ms1hmww7B_Lria3GI9--Vpg=rw-w512-h320" alt="Sammy app — home screen" style="object-fit:contain; padding:0.5rem;" />
+        </div>
+        <div class="screenshot-frame">
+          <img src="https://play-lh.googleusercontent.com/gQqRoHdAfOS-Xp_IF3aCC2ged5vOUD5akTryu_hsjU7Lor_DQdglABLDmyn52W1882SyROUexsA7UsPm2VJbjQ=rw-w512-h320" alt="Sammy app — trigger tracking" style="object-fit:contain; padding:0.5rem;" />
+        </div>
+        <div class="screenshot-frame">
+          <img src="https://play-lh.googleusercontent.com/eZXoU9XAKt037xguv1mMdECOFNONucn5LGbVrVp0r2V8GdLJcTSOD7ox4SW6TAdgoAA33irdS4aDlNQwJsrpHDo=rw-w512-h320" alt="Sammy app — daily tasks" style="object-fit:contain; padding:0.5rem;" />
+        </div>
+      </div>
+    </div>
+
+    <div class="case-section">
+      <div class="case-section-label">Discovery</div>
+      <h3>Discovery wasn't a phase — it was the operating model</h3>
+
+      <!-- Research Challenge -->
+      <div style="background:var(--warm); border:1px solid var(--line); border-radius:8px; padding:1.4rem 1.6rem; margin-bottom:0.8rem;">
+        <div style="font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin-bottom:0.8rem;">🔍 Research Challenge</div>
+        <p style="font-size:0.85rem; color:var(--ink); margin:0;">Getting honest insight from a 50+ audience about a stigmatised condition required a different approach. Standard screeners don't work when people have spent years not talking about something. Trust had to be built first — through how interviews were framed, who conducted them, and how questions were sequenced.</p>
+      </div>
+
+      <!-- Arrow -->
+      <div style="text-align:center; font-size:1.2rem; color:var(--muted); margin:0.3rem 0;">↓</div>
+
+      <!-- Core Insight -->
+      <div style="background:var(--ink); border-radius:8px; padding:1.4rem 1.6rem; margin-bottom:0.8rem;">
+        <div style="font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(245,243,239,0.5); margin-bottom:0.6rem;">💡 Core Insight → Product North Star</div>
+        <div style="font-family:'Instrument Serif',serif; font-size:1.05rem; font-style:italic; color:rgba(245,243,239,0.9); margin-bottom:1rem;">"Users wanted control, not to feel like patients."</div>
+        <div style="display:flex; flex-direction:column; gap:0.4rem;">
+          <div style="font-size:0.84rem; color:rgba(245,243,239,0.85); padding-left:1.2rem; position:relative;"><span style="position:absolute; left:0; color:#a8c5a0;">✓</span>Approachable over clinical</div>
+          <div style="font-size:0.84rem; color:rgba(245,243,239,0.85); padding-left:1.2rem; position:relative;"><span style="position:absolute; left:0; color:#a8c5a0;">✓</span>Progress and confidence as the design north star</div>
+          <div style="font-size:0.84rem; color:rgba(245,243,239,0.85); padding-left:1.2rem; position:relative;"><span style="position:absolute; left:0; color:#a8c5a0;">✓</span>Every feature designed around user control</div>
+        </div>
+      </div>
+
+      <!-- Arrow -->
+      <div style="text-align:center; font-size:1.2rem; color:var(--muted); margin:0.3rem 0;">↓</div>
+
+      <!-- Analytics + Interviews -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.2rem;">
+        <div style="background:var(--warm); border:1px solid var(--line); border-radius:8px; padding:1.2rem; text-align:center;">
+          <div style="font-size:1.4rem; margin-bottom:0.4rem;">📊</div>
+          <div style="font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:0.4rem;">Analytics showed WHERE</div>
+          <div style="font-size:0.84rem; color:var(--ink);">Drop-off points detected across the funnel</div>
+        </div>
+        <div style="background:var(--warm); border:1px solid var(--line); border-radius:8px; padding:1.2rem; text-align:center;">
+          <div style="font-size:1.4rem; margin-bottom:0.4rem;">🎙️</div>
+          <div style="font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:0.4rem;">Interviews explained WHY</div>
+          <div style="font-size:0.84rem; color:var(--ink);">Root causes — running in parallel, always</div>
+        </div>
+      </div>
+
+      <!-- Three stat cards -->
+      <div class="insight-grid">
+        <div class="insight-card">
+          <div style="font-size:1.2rem; margin-bottom:0.4rem;">🗣️</div>
+          <div class="insight-num">100+</div>
+          <div class="insight-label">Interviews — concept through post-launch iteration</div>
+        </div>
+        <div class="insight-card">
+          <div style="font-size:1.2rem; margin-bottom:0.4rem;">💡</div>
+          <div class="insight-num">1 Insight</div>
+          <div class="insight-label">Control over clinical — the product north star</div>
+        </div>
+        <div class="insight-card">
+          <div style="font-size:1.2rem; margin-bottom:0.4rem;">👥</div>
+          <div class="insight-num">50+</div>
+          <div class="insight-label">Audience — every decision validated with real target users</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-section">
+      <div class="case-section-label">The Strategic Bets</div>
+      <h3>Three decisions that defined the product</h3>
+
+      <!-- Context bar -->
+      <div style="display:flex; flex-wrap:wrap; gap:2rem; justify-content:center; padding:1rem 0 1.8rem; border-bottom:1px solid var(--line); margin-bottom:1.8rem;">
+        <div style="display:flex; align-items:center; gap:0.5rem; font-size:0.85rem; color:var(--muted);">
+          <span style="font-size:1.1rem;">⏱️</span> 3-month timeline to MVP
+        </div>
+        <div style="display:flex; align-items:center; gap:0.5rem; font-size:0.85rem; color:var(--muted);">
+          <span style="font-size:1.1rem;">👥</span> 8-person cross-functional team
+        </div>
+        <div style="display:flex; align-items:center; gap:0.5rem; font-size:0.85rem; color:var(--muted);">
+          <span style="font-size:1.1rem;">🏥</span> Regulated digital health product
+        </div>
+      </div>
+
+      <!-- Three columns -->
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.5rem; margin-bottom:1.8rem;">
+
+        <!-- Bet 1 -->
+        <div>
+          <div style="font-size:0.75rem; font-weight:700; color:var(--accent); margin-bottom:0.3rem;">01</div>
+          <h4 style="font-size:0.95rem; font-weight:600; color:var(--ink); margin:0 0 0.6rem; line-height:1.4;">Validate demand before building</h4>
+          <div style="height:2px; background:var(--accent); border-radius:2px; margin-bottom:1rem; opacity:0.4;"></div>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.55rem;">
+            <li style="font-size:0.83rem; color:var(--muted); padding-left:1rem; position:relative;"><span style="position:absolute; left:0; color:var(--accent);">·</span>Wix smoke test landing page</li>
+            <li style="font-size:0.83rem; color:var(--muted); padding-left:1rem; position:relative;"><span style="position:absolute; left:0; color:var(--accent);">·</span>Targeted paid social ads</li>
+            <li style="font-size:0.83rem; color:var(--muted); padding-left:1rem; position:relative;"><span style="position:absolute; left:0; color:var(--accent);">·</span>Real user conversion data — before a line of code</li>
+            <li style="font-size:0.83rem; color:var(--muted); padding-left:1rem; position:relative;"><span style="position:absolute; left:0; color:var(--accent);">·</span>€250K secured with validated demand as evidence</li>
+          </ul>
+        </div>
+
+        <!-- Bet 2 -->
+        <div>
+          <div style="font-size:0.75rem; font-weight:700; color:var(--accent); margin-bottom:0.3rem;">02</div>
+          <h4 style="font-size:0.95rem; font-weight:600; color:var(--ink); margin:0 0 0.6rem; line-height:1.4;">Build for trust, not features</h4>
+          <div style="height:2px; background:var(--accent); border-radius:2px; margin-bottom:1rem; opacity:0.4;"></div>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.55rem;">
+            <li style="font-size:0.83rem; color:var(--muted); padding-left:1rem; position:relative;"><span style="position:absolute; left:0; color:var(--accent);">·</span>50+ audience — diverse, first-time app users</li>
+            <li style="font-size:0.83rem; color:var(--muted); padding-left:1rem; position:relative;"><span style="position:absolute; left:0; color:var(--accent);">·</span>Cut anything clinically heavy</li>
+            <li style="font-size:0.83rem; color:var(--muted); padding-left:1rem; position:relative;"><span style="position:absolute; left:0; color:var(--accent);">·</span>Simplified, empathetic onboarding</li>
+            <li style="font-size:0.83rem; color:var(--muted); padding-left:1rem; position:relative;"><span style="position:absolute; left:0; color:var(--accent);">·</span>Progress and confidence over clinical compliance</li>
+          </ul>
+        </div>
+
+        <!-- Bet 3 -->
+        <div>
+          <div style="font-size:0.75rem; font-weight:700; color:var(--accent); margin-bottom:0.3rem;">03</div>
+          <h4 style="font-size:0.95rem; font-weight:600; color:var(--ink); margin:0 0 0.6rem; line-height:1.4;">Startup speed inside a corporate — deliberately</h4>
+          <div style="height:2px; background:var(--accent); border-radius:2px; margin-bottom:1rem; opacity:0.4;"></div>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.55rem;">
+            <li style="font-size:0.83rem; color:var(--muted); padding-left:1rem; position:relative;"><span style="position:absolute; left:0; color:var(--accent);">·</span>2-week agile sprints</li>
+            <li style="font-size:0.83rem; color:var(--muted); padding-left:1rem; position:relative;"><span style="position:absolute; left:0; color:var(--accent);">·</span>AI tooling for rapid iteration</li>
+            <li style="font-size:0.83rem; color:var(--muted); padding-left:1rem; position:relative;"><span style="position:absolute; left:0; color:var(--accent);">·</span>Regulatory constraints treated as design inputs</li>
+            <li style="font-size:0.83rem; color:var(--muted); padding-left:1rem; position:relative;"><span style="position:absolute; left:0; color:var(--accent);">·</span>Regulated MVP shipped in 3 months</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Results bar -->
+      <div style="background:var(--ink); border-radius:10px; padding:1.4rem 1.8rem; display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem;">
+        <div style="text-align:center; padding-right:1rem; border-right:1px solid rgba(245,243,239,0.1);">
+          <div style="font-size:1rem; margin-bottom:0.4rem;">✅</div>
+          <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:rgba(245,243,239,0.9); margin-bottom:0.3rem;">Validated Demand</div>
+          <div style="font-size:0.78rem; color:rgba(245,243,239,0.5);">Proven market interest before a single line of code</div>
+        </div>
+        <div style="text-align:center; padding:0 1rem; border-right:1px solid rgba(245,243,239,0.1);">
+          <div style="font-size:1rem; margin-bottom:0.4rem;">📈</div>
+          <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:rgba(245,243,239,0.9); margin-bottom:0.3rem;">Strong Retention</div>
+          <div style="font-size:0.78rem; color:rgba(245,243,239,0.5);">Trust-focused design drove 45% four-week retention</div>
+        </div>
+        <div style="text-align:center; padding-left:1rem;">
+          <div style="font-size:1rem; margin-bottom:0.4rem;">🚀</div>
+          <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:rgba(245,243,239,0.9); margin-bottom:0.3rem;">Market-Ready Launch</div>
+          <div style="font-size:0.78rem; color:rgba(245,243,239,0.5);">Regulated product shipped on time, inside a 46K-person company</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-section">
+      <div class="case-section-label">The Invisible Work</div>
+      <h3>What the process steps don't show</h3>
+
+      <div style="display:flex; flex-direction:column; gap:0; border:1px solid var(--line); border-radius:8px; overflow:hidden;">
+
+        <div style="display:grid; grid-template-columns:2fr 3fr; border-bottom:1px solid var(--line);">
+          <div style="padding:1rem 1.2rem; background:var(--warm); display:flex; align-items:center; gap:0.7rem;">
+            <span style="font-size:1rem;">🏗️</span>
+            <span style="font-size:0.82rem; font-weight:600; color:var(--ink);">Built the team that built the product</span>
+          </div>
+          <div style="padding:1rem 1.2rem; display:flex; align-items:center;">
+            <span style="font-size:0.82rem; color:var(--muted);">Assembled and aligned an external founding team (dev, design, marketing, legal, medical) + five senior stakeholders — all without formal authority.</span>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:2fr 3fr; border-bottom:1px solid var(--line);">
+          <div style="padding:1rem 1.2rem; background:var(--warm); display:flex; align-items:center; gap:0.7rem;">
+            <span style="font-size:1rem;">⚡</span>
+            <span style="font-size:0.82rem; font-weight:600; color:var(--ink);">Operated across every function</span>
+          </div>
+          <div style="padding:1rem 1.2rem; display:flex; align-items:center;">
+            <span style="font-size:0.82rem; color:var(--muted);">Contracts, prototypes, campaigns, infrastructure, user research, ads — whatever kept zero-to-one momentum.</span>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:2fr 3fr; border-bottom:1px solid var(--line);">
+          <div style="padding:1rem 1.2rem; background:var(--warm); display:flex; align-items:center; gap:0.7rem;">
+            <span style="font-size:1rem;">🛡️</span>
+            <span style="font-size:0.82rem; font-weight:600; color:var(--ink);">Removed blockers before they landed</span>
+          </div>
+          <div style="padding:1rem 1.2rem; display:flex; align-items:center;">
+            <span style="font-size:0.82rem; color:var(--muted);">Anticipated misalignment, approval delays, and ownership gaps to keep a corporate venture moving at startup speed.</span>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:2fr 3fr; border-bottom:1px solid var(--line);">
+          <div style="padding:1rem 1.2rem; background:var(--warm); display:flex; align-items:center; gap:0.7rem;">
+            <span style="font-size:1rem;">💰</span>
+            <span style="font-size:0.82rem; font-weight:600; color:var(--ink);">Secured three funding rounds (€250K)</span>
+          </div>
+          <div style="padding:1rem 1.2rem; display:flex; align-items:center;">
+            <span style="font-size:0.82rem; color:var(--muted);">Translated venture logic into commercial language (shelf space, distribution, margin) for shifting stakeholder groups.</span>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:2fr 3fr; border-bottom:1px solid var(--line);">
+          <div style="padding:1rem 1.2rem; background:var(--warm); display:flex; align-items:center; gap:0.7rem;">
+            <span style="font-size:1rem;">⚖️</span>
+            <span style="font-size:0.82rem; font-weight:600; color:var(--ink);">Shipped in a regulated environment</span>
+          </div>
+          <div style="padding:1rem 1.2rem; display:flex; align-items:center;">
+            <span style="font-size:0.82rem; color:var(--muted);">Turned Legal and Medical into early build-partners, not end-stage reviewers.</span>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:2fr 3fr;">
+          <div style="padding:1rem 1.2rem; background:var(--warm); display:flex; align-items:center; gap:0.7rem;">
+            <span style="font-size:1rem;">📊</span>
+            <span style="font-size:0.82rem; font-weight:600; color:var(--ink);">Made the case for continued investment</span>
+          </div>
+          <div style="padding:1rem 1.2rem; display:flex; align-items:center;">
+            <span style="font-size:0.82rem; color:var(--muted);">Converted retention, activation, and CAC into commercial KPIs a traditional FMCG organisation could act on.</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="case-section">
+      <div class="case-section-label">Impact</div>
+      <h3>Retention that earned a place in the business</h3>
+      <p style="font-size:0.85rem; color:var(--muted); margin-bottom:1.8rem;">First 6 months. Goal: learn fast enough to secure continued investment — not scale.</p>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem;">
+
+        <!-- Investment -->
+        <div style="background:var(--ink); border-radius:8px; padding:1.4rem;">
+          <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(245,243,239,0.4); margin-bottom:1rem;">Investment</div>
+          <div style="display:flex; flex-direction:column; gap:0.8rem;">
+            <div>
+              <div style="font-size:1.1rem; font-weight:700; color:rgba(245,243,239,0.95);">€250K</div>
+              <div style="font-size:0.78rem; color:rgba(245,243,239,0.5); margin-top:0.2rem;">3 C-suite rounds. Evidence-based approvals in a company with no venture precedent.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Growth -->
+        <div style="background:var(--ink); border-radius:8px; padding:1.4rem;">
+          <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(245,243,239,0.4); margin-bottom:1rem;">Growth</div>
+          <div style="display:flex; flex-direction:column; gap:0.8rem;">
+            <div>
+              <div style="font-size:1.1rem; font-weight:700; color:rgba(245,243,239,0.95);">€12 → €6 CAC</div>
+              <div style="font-size:0.78rem; color:rgba(245,243,239,0.5); margin-top:0.2rem;">Halved through 12+ experiments on restricted channels. No agency, no scaled budget.</div>
+            </div>
+            <div style="border-top:1px solid rgba(245,243,239,0.08); padding-top:0.8rem;">
+              <div style="font-size:1.1rem; font-weight:700; color:rgba(245,243,239,0.95);">13% CTR <span style="font-size:0.78rem; font-weight:400; color:rgba(168,197,160,0.9);">6× benchmark</span></div>
+              <div style="font-size:0.78rem; color:rgba(245,243,239,0.5); margin-top:0.2rem;">In a category where most platforms restrict health condition targeting entirely.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Learning -->
+        <div style="background:var(--ink); border-radius:8px; padding:1.4rem;">
+          <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(245,243,239,0.4); margin-bottom:1rem;">Product Learning</div>
+          <div style="display:flex; flex-direction:column; gap:0.8rem;">
+            <div>
+              <div style="font-size:1.1rem; font-weight:700; color:rgba(245,243,239,0.95);">45% retention <span style="font-size:0.78rem; font-weight:400; color:rgba(168,197,160,0.9);">1.8× benchmark</span></div>
+              <div style="font-size:0.78rem; color:rgba(245,243,239,0.5); margin-top:0.2rem;">4-week retention in a category where most users drop in week one.</div>
+            </div>
+            <div style="border-top:1px solid rgba(245,243,239,0.08); padding-top:0.8rem;">
+              <div style="font-size:1.1rem; font-weight:700; color:rgba(245,243,239,0.95);">40% → 60% activation</div>
+              <div style="font-size:0.78rem; color:rgba(245,243,239,0.5); margin-top:0.2rem;">50% relative improvement for a 50+ audience using a health app for the first time.</div>
+            </div>
+            <div style="border-top:1px solid rgba(245,243,239,0.08); padding-top:0.8rem;">
+              <div style="font-size:0.82rem; font-weight:600; color:rgba(245,243,239,0.7);">V1 → V2 pivot validated</div>
+              <div style="font-size:0.78rem; color:rgba(245,243,239,0.5); margin-top:0.2rem;">Chat-based V2 lifted engagement to 10% and shaped the business unit's direction.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="case-section" style="background:var(--ink); border-radius:10px; padding:2rem 2.5rem; margin-top:1rem;">
+      <p style="font-family:'Instrument Serif',serif; font-size:1.1rem; font-style:italic; color:rgba(245,243,239,0.85); line-height:1.75; margin-bottom:1.2rem;">"She owned the full digital product journey: discovery, validation, product strategy, cross-functional coordination, regulatory &amp; legal requirements, and final launch — all within a very compressed timeline."</p>
+      <div style="font-size:0.8rem; font-weight:500; color:rgba(245,243,239,0.5); letter-spacing:0.04em;">Kai Thornagel · Director Essity Ventures</div>
+    </div>
+
+    <div style="padding-top:1.5rem;">
+      <button onclick="showHome()" class="btn btn-outline">← Back to all work</button>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════ CASE STUDY 2 ═══════════════════════════ -->
+<div id="case2" class="case-page">
+
+  <div class="case-hero">
+    <div style="max-width:1100px; margin:0 auto;">
+      <button class="case-back" onclick="showHome()">← Back to work</button>
+      <div class="case-type">Case Study 02 · Teen Wellness · First Venture</div>
+      <h1 class="case-title">Routeen — Gamified Wellness App for Teens</h1>
+      <p class="case-summary">My first venture inside Essity Ventures — co-built from concept to live product on both app stores. I owned research, website, prototyping, beta testing, ad strategy, and content end-to-end. After multiple pivots, it proved its real value: a digital gateway bringing the next generation of customers into the ecosystem.</p>
+      <div class="case-stats">
+        <div class="stat-item">
+          <div class="stat-num">8,000+</div>
+          <div class="stat-label">Users acquired</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">€4.80</div>
+          <div class="stat-label">Cost per install</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2 in 3</div>
+          <div class="stat-label">Active users engaging with rewards</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">1.0→1.6%</div>
+          <div class="stat-label">Ad click-through rate</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">6+</div>
+          <div class="stat-label">Website iterations through pivots</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-body">
+
+    <div class="case-section">
+      <div class="case-section-label">Context</div>
+      <h3>Reaching customers before brand loyalty exists</h3>
+      <p>Teens navigating puberty (12–17) feel insecure and alone on the journey. Their only sources: mothers, friends, Google, social media. No dedicated, trustworthy solution existed — and mothers were willing to help and pay, but didn't know how.</p>
+      <p>For Essity, this was a <strong>Point of Market Entry</strong> play: connect with consumers at the earliest possible life stage — before brand loyalties form — with the highest total customer lifetime value of any audience. Routeen was the bet: a gamified wellness companion designed to feel like the social apps teens already live in, not a health tool their parents picked.</p>
+      <p>This was my first venture at Essity — where I learned the ways of working I'd later apply end-to-end on Sammy.</p>
+    </div>
+
+    <div class="case-section">
+      <div class="case-section-label">The product</div>
+      <h3>Built to feel like the apps teens already love</h3>
+      <p>A live product — shipped on the App Store and Google Play. Personalised routines, gamified challenges, self-care games, and a reward system — expert-backed underneath, but designed to feel like the social apps teens use daily, not a health tool their parents picked.</p>
+      <div class="screenshot-gallery">
+        <div class="screenshot-frame">
+          <img src="https://play-lh.googleusercontent.com/k8W1A4gBUNZYmKB_AZ87mxyjJQqT4KmVHYibCvTY8lSpXlVBsb43KH1vJXGmIwIxXVQ=w526-h296" alt="Routeen app screen 1" style="object-fit:contain; padding:0.5rem;" />
+        </div>
+        <div class="screenshot-frame">
+          <img src="https://play-lh.googleusercontent.com/kysFqunrp82lNvP9sx1RAtWG_oSEnTUJdzM6g1R6UJRTrqdHrVc5n7Mjd-ZrUaTghQ=w526-h296" alt="Routeen app screen 2" style="object-fit:contain; padding:0.5rem;" />
+        </div>
+        <div class="screenshot-frame">
+          <img src="https://play-lh.googleusercontent.com/X-Wgj3cB4CHDaMEvv15cV6utWeCR1qYJTUB-IoXRW5Z3vyyraM2sEThIR35xOoaD6A=w526-h296" alt="Routeen app screen 3" style="object-fit:contain; padding:0.5rem;" />
+        </div>
+      </div>
+    </div>
+
+    <div class="case-section">
+      <div class="case-section-label">Discovery</div>
+      <h3>Built with a committed teen community</h3>
+      <p>The original product thesis assumed a single engagement mechanic — a daily routine — would be enough to retain users. 100+ interviews with teens <em>and parents</em>, face-to-face group sessions, and 300+ surveys proved it wrong.</p>
+      <p>The real finding: teens needed multiple layered mechanics to keep coming back. Routines alone weren't enough. That insight drove entirely new feature categories that weren't in the original roadmap — points, marketplace, challenges — each shipped and validated with the community that helped design them.</p>
+      <div class="insight-grid">
+        <div class="insight-card">
+          <div class="insight-num">100+</div>
+          <div class="insight-label">Interviews with teens and parents — plus face-to-face group sessions</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-num">300+</div>
+          <div class="insight-label">Survey responses shaping feature development</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-num">14</div>
+          <div class="insight-label">Concept iterations from February to July — each tested in market</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-section">
+      <div class="case-section-label">My Scope</div>
+      <h3>What I owned, end to end</h3>
+
+      <div style="display:flex; flex-direction:column; gap:0; border:1px solid var(--line); border-radius:8px; overflow:hidden;">
+
+        <div style="display:grid; grid-template-columns:2fr 3fr; border-bottom:1px solid var(--line);">
+          <div style="padding:1rem 1.2rem; background:var(--warm); display:flex; align-items:center; gap:0.7rem;">
+            <span style="font-size:1rem;">🔍</span>
+            <span style="font-size:0.82rem; font-weight:600; color:var(--ink);">Market & competitor research</span>
+          </div>
+          <div style="padding:1rem 1.2rem; display:flex; align-items:center;">
+            <span style="font-size:0.82rem; color:var(--muted);">Mapped the teen wellness landscape to find the gap worth betting on.</span>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:2fr 3fr; border-bottom:1px solid var(--line);">
+          <div style="padding:1rem 1.2rem; background:var(--warm); display:flex; align-items:center; gap:0.7rem;">
+            <span style="font-size:1rem;">🌐</span>
+            <span style="font-size:0.82rem; font-weight:600; color:var(--ink);">Website — strategy and build</span>
+          </div>
+          <div style="padding:1rem 1.2rem; display:flex; align-items:center;">
+            <span style="font-size:0.82rem; color:var(--muted);">Owned positioning, messaging, and structure — and built it myself. Iterated 6+ times as we experimented and pivoted.</span>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:2fr 3fr; border-bottom:1px solid var(--line);">
+          <div style="padding:1rem 1.2rem; background:var(--warm); display:flex; align-items:center; gap:0.7rem;">
+            <span style="font-size:1rem;">✏️</span>
+            <span style="font-size:0.82rem; font-weight:600; color:var(--ink);">Prototyping & co-creation</span>
+          </div>
+          <div style="padding:1rem 1.2rem; display:flex; align-items:center;">
+            <span style="font-size:0.82rem; color:var(--muted);">Developed concepts with users directly, then handed validated prototypes to the design team for execution.</span>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:2fr 3fr; border-bottom:1px solid var(--line);">
+          <div style="padding:1rem 1.2rem; background:var(--warm); display:flex; align-items:center; gap:0.7rem;">
+            <span style="font-size:1rem;">🧪</span>
+            <span style="font-size:0.82rem; font-weight:600; color:var(--ink);">Beta testing</span>
+          </div>
+          <div style="padding:1rem 1.2rem; display:flex; align-items:center;">
+            <span style="font-size:0.82rem; color:var(--muted);">Ran surveys and interviews with beta users — turning raw feedback into prioritised product decisions.</span>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:2fr 3fr; border-bottom:1px solid var(--line);">
+          <div style="padding:1rem 1.2rem; background:var(--warm); display:flex; align-items:center; gap:0.7rem;">
+            <span style="font-size:1rem;">📣</span>
+            <span style="font-size:0.82rem; font-weight:600; color:var(--ink);">Ad strategy</span>
+          </div>
+          <div style="padding:1rem 1.2rem; display:flex; align-items:center;">
+            <span style="font-size:0.82rem; color:var(--muted);">Built creatives and messaging for a Gen-Z audience — lifting click-through from 1.0% to 1.6%.</span>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:2fr 3fr;">
+          <div style="padding:1rem 1.2rem; background:var(--warm); display:flex; align-items:center; gap:0.7rem;">
+            <span style="font-size:1rem;">📝</span>
+            <span style="font-size:0.82rem; font-weight:600; color:var(--ink);">In-app content creation</span>
+          </div>
+          <div style="padding:1rem 1.2rem; display:flex; align-items:center;">
+            <span style="font-size:0.82rem; color:var(--muted);">Created the content teens actually engaged with — expert-backed but written in their language.</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="case-section">
+      <div class="case-section-label">The Pivot</div>
+      <h3>We tested three business hypotheses. One failed. That was the point.</h3>
+      <p>Routeen wasn't just testing features — it was testing how the venture could make money. Three business models, each with a clear validation threshold:</p>
+
+      <div style="display:flex; flex-direction:column; gap:0; border:1px solid var(--line); border-radius:8px; overflow:hidden; margin:1.2rem 0;">
+        <div style="display:grid; grid-template-columns:2fr 1fr 2fr; border-bottom:1px solid var(--line);">
+          <div style="padding:1rem 1.2rem; background:var(--warm); display:flex; align-items:center;">
+            <span style="font-size:0.82rem; font-weight:600; color:var(--ink);">Self-monetising subscription</span>
+          </div>
+          <div style="padding:1rem 1.2rem; display:flex; align-items:center;">
+            <span style="font-size:0.78rem; font-weight:700; color:#b0584a;">✗ Not validated</span>
+          </div>
+          <div style="padding:1rem 1.2rem; display:flex; align-items:center;">
+            <span style="font-size:0.82rem; color:var(--muted);">0% paying users — teens engaged, but wouldn't pay.</span>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:2fr 1fr 2fr; border-bottom:1px solid var(--line);">
+          <div style="padding:1rem 1.2rem; background:var(--warm); display:flex; align-items:center;">
+            <span style="font-size:0.82rem; font-weight:600; color:var(--ink);">Lead generation for eCommerce</span>
+          </div>
+          <div style="padding:1rem 1.2rem; display:flex; align-items:center;">
+            <span style="font-size:0.78rem; font-weight:700; color:var(--accent);">✓ Validated</span>
+          </div>
+          <div style="padding:1rem 1.2rem; display:flex; align-items:center;">
+            <span style="font-size:0.82rem; color:var(--muted);">18% reward point redemption — real purchase intent.</span>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:2fr 1fr 2fr;">
+          <div style="padding:1rem 1.2rem; background:var(--warm); display:flex; align-items:center;">
+            <span style="font-size:0.82rem; font-weight:600; color:var(--ink);">Market entry driver for femcare</span>
+          </div>
+          <div style="padding:1rem 1.2rem; display:flex; align-items:center;">
+            <span style="font-size:0.78rem; font-weight:700; color:var(--accent);">✓ Validated</span>
+          </div>
+          <div style="padding:1rem 1.2rem; display:flex; align-items:center;">
+            <span style="font-size:0.82rem; color:var(--muted);">38% engagement with femcare content — the audience was listening.</span>
+          </div>
+        </div>
+      </div>
+
+      <p>The conclusion wrote itself: Routeen's value wasn't as a standalone subscription product — it was as a <strong>digital gateway</strong>, bringing the next generation of customers into the ecosystem before any competitor reached them. That evidence shaped the final recommendation to leadership. Not every venture's destiny is to scale alone; some prove their value by showing the organisation a new way to grow.</p>
+    </div>
+
+    <div class="case-section">
+      <div class="case-section-label">Impact</div>
+      <h3>What six months of experiments proved</h3>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem;">
+
+        <!-- Traction -->
+        <div style="background:var(--ink); border-radius:8px; padding:1.4rem;">
+          <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(245,243,239,0.4); margin-bottom:1rem;">Traction</div>
+          <div style="display:flex; flex-direction:column; gap:0.8rem;">
+            <div>
+              <div style="font-size:1.1rem; font-weight:700; color:rgba(245,243,239,0.95);">8,000+ users</div>
+              <div style="font-size:0.78rem; color:rgba(245,243,239,0.5); margin-top:0.2rem;">Acquired at €4.80 per install through channel testing and creative optimisation.</div>
+            </div>
+            <div style="border-top:1px solid rgba(245,243,239,0.08); padding-top:0.8rem;">
+              <div style="font-size:1.1rem; font-weight:700; color:rgba(245,243,239,0.95);">CTR 1.0% → 1.6%</div>
+              <div style="font-size:0.78rem; color:rgba(245,243,239,0.5); margin-top:0.2rem;">60% relative improvement through creative and messaging iteration for a Gen-Z audience.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Engagement -->
+        <div style="background:var(--ink); border-radius:8px; padding:1.4rem;">
+          <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(245,243,239,0.4); margin-bottom:1rem;">Engagement</div>
+          <div style="display:flex; flex-direction:column; gap:0.8rem;">
+            <div>
+              <div style="font-size:1.1rem; font-weight:700; color:rgba(245,243,239,0.95);">2 in 3 active users</div>
+              <div style="font-size:0.78rem; color:rgba(245,243,239,0.5); margin-top:0.2rem;">Engaged with the reward system — with an 18% redemption rate showing real depth, not vanity opens.</div>
+            </div>
+            <div style="border-top:1px solid rgba(245,243,239,0.08); padding-top:0.8rem;">
+              <div style="font-size:1.1rem; font-weight:700; color:rgba(245,243,239,0.95);">31% → 40% in 14 days</div>
+              <div style="font-size:0.78rem; color:rgba(245,243,239,0.5); margin-top:0.2rem;">Highly engaged users grew after beta testing surfaced a missing feature — prioritised and shipped fast.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Strategic Learning -->
+        <div style="background:var(--ink); border-radius:8px; padding:1.4rem;">
+          <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(245,243,239,0.4); margin-bottom:1rem;">Learning Velocity</div>
+          <div style="display:flex; flex-direction:column; gap:0.8rem;">
+            <div>
+              <div style="font-size:1.1rem; font-weight:700; color:rgba(245,243,239,0.95);">14 iterations in 6 months</div>
+              <div style="font-size:0.78rem; color:rgba(245,243,239,0.5); margin-top:0.2rem;">Hooked users 10.8% → 24.6%. Retained users 9% → 15.4%. Every step tested in market.</div>
+            </div>
+            <div style="border-top:1px solid rgba(245,243,239,0.08); padding-top:0.8rem;">
+              <div style="font-size:0.82rem; font-weight:600; color:rgba(245,243,239,0.7);">Gateway value proven</div>
+              <div style="font-size:0.78rem; color:rgba(245,243,239,0.5); margin-top:0.2rem;">Validated as the entry point bringing new customers into the ecosystem — shaping the final leadership recommendation.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="case-section" style="background:var(--ink); border-radius:10px; padding:2rem 2.5rem; margin-top:1rem;">
+      <p style="font-family:'Instrument Serif',serif; font-size:1.1rem; font-style:italic; color:rgba(245,243,239,0.85); line-height:1.75; margin:0;">Routeen taught me the operating system — how to build, test, and kill ideas with evidence inside a corporate. Sammy is what I built with it.</p>
+    </div>
+
+    <div style="padding-top:1.5rem;">
+      <button onclick="showHome()" class="btn btn-outline">← Back to all work</button>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════ CASE STUDY 3 ═══════════════════════════ -->
+<div id="case3" class="case-page">
+
+  <div class="case-hero">
+    <div style="max-width:1100px; margin:0 auto;">
+      <button class="case-back" onclick="showHome()">← Back to work</button>
+      <div class="case-type">Case Study 03 · Venture Operations · Ecosystem & Comms</div>
+      <h1 class="case-title">Running the Visibility Engine of a Corporate Venture Unit</h1>
+      <p class="case-summary">How I made Essity Ventures visible, credible, and connected — internally to secure resources and buy-in, externally to attract the right startups and partners. One job, three channels, full ownership.</p>
+      <div class="case-stats">
+        <div class="stat-item">
+          <div class="stat-num">46K</div>
+          <div class="stat-label">Organisation size reached</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">300+</div>
+          <div class="stat-label">Startups scouted & assessed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2×</div>
+          <div class="stat-label">Startup Days led (2024 & 2025)</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">End-to-end</div>
+          <div class="stat-label">CRM migration, supplier to in-house</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-body">
+
+    <div class="case-section">
+      <div class="case-section-label">Context</div>
+      <h3>A venture unit no one knows about is a venture unit that can't operate</h3>
+      <p>Corporate venture units live and die by visibility. Internally, without it you lose resourcing, executive backing, and cross-functional cooperation. Externally, without it the best startups don't apply and the right partners don't engage. Essity Ventures was a small team inside a 46,000-person organisation — and I owned the work that made it visible on both sides.</p>
+      <p>This wasn't a comms role. It was running the full operational and reputational engine of the venture unit — continuous internal communications, an annual external startup event, and a scouting pipeline I migrated from an external supplier to an internal system end-to-end.</p>
+    </div>
+
+    <div class="case-section">
+      <div class="case-section-label">What I owned</div>
+      <h3>One engine, two directions</h3>
+
+      <!-- Direction strip -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; background:var(--ink); border-radius:10px 10px 0 0; overflow:hidden;">
+        <div style="padding:1rem 1.4rem; text-align:center; border-right:1px solid rgba(245,243,239,0.1);">
+          <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(245,243,239,0.9);">⟵ Inward</div>
+          <div style="font-size:0.75rem; color:rgba(245,243,239,0.45); margin-top:0.2rem;">Earn resources, backing & buy-in</div>
+        </div>
+        <div style="padding:1rem 1.4rem; text-align:center;">
+          <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(245,243,239,0.9);">Outward ⟶</div>
+          <div style="font-size:0.75rem; color:rgba(245,243,239,0.45); margin-top:0.2rem;">Attract the right startups & partners</div>
+        </div>
+      </div>
+
+      <!-- Four channel cards in 2x2 under the strip -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid var(--line); border-top:none; border-radius:0 0 10px 10px; overflow:hidden; margin-bottom:1rem;">
+
+        <!-- Internal comms -->
+        <div style="padding:1.4rem 1.5rem; border-right:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--warm);">
+          <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.6rem;">
+            <span style="font-size:1.1rem;">📰</span>
+            <span style="font-size:0.82rem; font-weight:700; color:var(--ink);">Internal communications</span>
+          </div>
+          <p style="font-size:0.82rem; color:var(--muted); margin:0 0 0.7rem; line-height:1.55;">Newsletters, awareness campaigns, executive updates — continuous, multi-channel.</p>
+          <div style="font-size:0.78rem; color:var(--accent); font-weight:600;">Made innovation legible to 46,000 people who weren't in the room.</div>
+        </div>
+
+        <!-- Startup Days -->
+        <div style="padding:1.4rem 1.5rem; border-bottom:1px solid var(--line);">
+          <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.6rem;">
+            <span style="font-size:1.1rem;">🚀</span>
+            <span style="font-size:0.82rem; font-weight:700; color:var(--ink);">Startup Days 2024 & 2025</span>
+          </div>
+          <p style="font-size:0.82rem; color:var(--muted); margin:0 0 0.7rem; line-height:1.55;">The unit's flagship external event, both years — concept, logistics, stakeholders, delivery.</p>
+          <div style="font-size:0.78rem; color:var(--accent); font-weight:600;">A recurring moment that put Essity Ventures on the map.</div>
+        </div>
+
+        <!-- Executive storytelling -->
+        <div style="padding:1.4rem 1.5rem; border-right:1px solid var(--line); background:var(--warm);">
+          <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.6rem;">
+            <span style="font-size:1.1rem;">🎤</span>
+            <span style="font-size:0.82rem; font-weight:700; color:var(--ink);">Executive storytelling</span>
+          </div>
+          <p style="font-size:0.82rem; color:var(--muted); margin:0 0 0.7rem; line-height:1.55;">Translated product traction, unit economics, and market data into narratives leadership could act on.</p>
+          <div style="font-size:0.78rem; color:var(--accent); font-weight:600;">The decks behind every funding conversation.</div>
+        </div>
+
+        <!-- Scouting -->
+        <div style="padding:1.4rem 1.5rem;">
+          <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.6rem;">
+            <span style="font-size:1.1rem;">🔭</span>
+            <span style="font-size:0.82rem; font-weight:700; color:var(--ink);">Startup scouting pipeline</span>
+          </div>
+          <p style="font-size:0.82rem; color:var(--muted); margin:0 0 0.7rem; line-height:1.55;">Assessed 300+ applications for strategic fit (Pitchbook, Crunchbase) and routed shortlists to senior stakeholders.</p>
+          <div style="font-size:0.78rem; color:var(--accent); font-weight:600;">The filter between noise and the deals worth a meeting.</div>
+        </div>
+      </div>
+
+      <!-- CRM migration full-width row -->
+      <div style="background:var(--ink); border-radius:8px; padding:1.2rem 1.5rem; display:flex; align-items:center; gap:1rem;">
+        <span style="font-size:1.2rem; flex-shrink:0;">⚙️</span>
+        <div>
+          <div style="font-size:0.82rem; font-weight:700; color:rgba(245,243,239,0.95); margin-bottom:0.2rem;">Plus: the infrastructure underneath</div>
+          <div style="font-size:0.8rem; color:rgba(245,243,239,0.55); line-height:1.5;">Migrated the scouting CRM from an external supplier to an in-house system — scoped requirements, migrated the data, onboarded the team. Owned end to end.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-section">
+      <div class="case-section-label">What this shows</div>
+      <h3>Operating beyond the product brief</h3>
+      <p>This work sits outside the two product case studies — and that's the point. Running the visibility engine of a venture unit means owning things no one else will: the narrative that gets you funding, the event that gets the right startups in the room, the CRM that makes scouting scalable.</p>
+      <p>It's the difference between a PM who builds what they're asked to build and one who takes responsibility for everything the venture needs to survive and grow.</p>
+    </div>
+
+    <div style="padding-top:1rem;">
+      <button onclick="showHome()" class="btn btn-outline">← Back to all work</button>
+    </div>
+
+  </div>
+</div>
+
+
+<script>
+  // Navigation
+  function showHome() {
+    document.getElementById('main-home').style.display = 'block';
+    document.querySelectorAll('.case-page').forEach(p => p.classList.remove('active'));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showCase(id) {
+    document.getElementById('main-home').style.display = 'none';
+    document.querySelectorAll('.case-page').forEach(p => p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
